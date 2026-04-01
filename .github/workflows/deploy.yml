@@ -7,18 +7,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
-
+          python-version: '3.x'
+      
       - name: Install MkDocs
         run: pip install mkdocs-material
-
+      
+      - name: Prepare docs folder   # ← 이게 핵심
+        run: |
+          mkdir -p docs
+          cp *.md docs/
+          cp -r en docs/en
+      
       - name: Deploy
         run: mkdocs gh-deploy --force
