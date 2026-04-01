@@ -1,0 +1,2242 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://rhino-ty.github.io/claude-code-docs-ko/en/reference/sdk/hooks-reference/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Hooks reference - Claude Code 한국어 문서</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans KR";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentation-index" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../../../.." title="Claude Code 한국어 문서" class="md-header__button md-logo" aria-label="Claude Code 한국어 문서" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Claude Code 한국어 문서
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hooks reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  홈
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../00_%EB%AA%A9%EC%B0%A8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  목차
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../01_%EC%86%8C%EA%B0%9C/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  소개
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../02_%EB%B9%A0%EB%A5%B8%EC%8B%9C%EC%9E%91/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  빠른시작
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../03_%EC%84%A4%EC%B9%98/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  설치
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../04_%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC/" class="md-tabs__link">
+          
+  
+  
+  개념
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../08_CLAUDE.md%EC%84%A4%EC%A0%95/" class="md-tabs__link">
+          
+  
+  
+  설정
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../11_%EC%9D%B8%EC%A6%9D/" class="md-tabs__link">
+          
+  
+  
+  가이드
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../16_%EC%BB%A4%EB%A7%A8%EB%93%9C%EA%B0%9C%EC%9A%94/" class="md-tabs__link">
+          
+  
+  
+  레퍼런스
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Claude Code 한국어 문서" class="md-nav__button md-logo" aria-label="Claude Code 한국어 문서" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Claude Code 한국어 문서
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    홈
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../00_%EB%AA%A9%EC%B0%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    목차
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../01_%EC%86%8C%EA%B0%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    소개
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../02_%EB%B9%A0%EB%A5%B8%EC%8B%9C%EC%9E%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    빠른시작
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../03_%EC%84%A4%EC%B9%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    설치
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    개념
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    개념
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../04_%EC%9E%91%EB%8F%99%EC%9B%90%EB%A6%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    작동원리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../05_%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%99%80%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    메모리와 컨텍스트
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../06_%EA%B6%8C%ED%95%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    권한 시스템
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../07_%EB%8F%84%EA%B5%AC%EB%AA%A9%EB%A1%9D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    도구 목록
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    설정
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    설정
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../08_CLAUDE.md%EC%84%A4%EC%A0%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLAUDE.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../09_%ED%99%98%EA%B2%BD%EB%B3%80%EC%88%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    환경변수
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../10_%EC%84%A4%EC%A0%95%ED%8C%8C%EC%9D%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    설정파일
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    가이드
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    가이드
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../11_%EC%9D%B8%EC%A6%9D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    인증
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../12_%ED%9B%85/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    훅
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../13_MCP%EC%84%9C%EB%B2%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP 서버
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../14_%EB%A9%80%ED%8B%B0%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    멀티에이전트
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../15_%EC%8A%A4%ED%82%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    스킬
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    레퍼런스
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    레퍼런스
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../16_%EC%BB%A4%EB%A7%A8%EB%93%9C%EA%B0%9C%EC%9A%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    커맨드 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../17_CLI%ED%94%8C%EB%9E%98%EA%B7%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI 플래그
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../18_%EC%8A%AC%EB%9E%98%EC%8B%9C%EC%BB%A4%EB%A7%A8%EB%93%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    슬래시 커맨드
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../19_%ED%9B%85%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    훅 레퍼런스
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../20_SDK%EA%B0%9C%EC%9A%94/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK 개요
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<blockquote>
+<h2 id="documentation-index">Documentation Index</h2>
+<p>Fetch the complete documentation index at: https://vineetagarwal-code-claude-code.mintlify.app/llms.txt
+Use this file to discover all available pages before exploring further.</p>
+</blockquote>
+<h1 id="hooks-reference">Hooks reference</h1>
+<blockquote>
+<p>Full reference for every hook event, its input payload, output schema, and the effect each exit code has on Claude's behavior.</p>
+</blockquote>
+<p>Hooks are shell commands, HTTP endpoints, LLM prompts, or in-process callbacks that fire at defined points in Claude's agentic loop. They let you inject logic before or after tool calls, intercept permission requests, react to session lifecycle events, and more.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Hooks are configured in any Claude Code settings file. The top-level <code>hooks</code> key maps event names to an array of matcher objects.</p>
+<p>```json  theme={null}
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'About to run bash command' &gt;&amp;2"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/bin/lint-changed-file '$TOOL_INPUT'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude finished'"
+          }
+        ]
+      }
+    ]
+  }
+}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>### Settings file locations
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>| Scope   | Path                          | Priority |
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>| ------- | ----------------------------- | -------- |
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>| User    | `~/.claude/settings.json`     | Low      |
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>| Project | `.claude/settings.json`       | Medium   |
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>| Local   | `.claude/settings.local.json` | High     |
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Higher-priority settings files take precedence. All hooks across all files run; they are not overridden.
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>### Matcher configuration
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>&lt;ResponseField name=&quot;matcher&quot; type=&quot;string&quot;&gt;
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  A string pattern that filters when these hooks run. The field matched depends on the event:
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  * `PreToolUse` / `PostToolUse` / `PostToolUseFailure` / `PermissionRequest` / `PermissionDenied` — matched against `tool_name`
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  * `Notification` — matched against `notification_type`
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  * `SessionStart` — matched against `source` (`startup`, `resume`, `clear`, `compact`)
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  * `Setup` — matched against `trigger` (`init`, `maintenance`)
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>  * `SubagentStart` / `SubagentStop` — matched against `agent_type`
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>  * `PreCompact` / `PostCompact` — matched against `trigger` (`manual`, `auto`)
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>  * `StopFailure` — matched against `error`
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>  * `ConfigChange` — matched against `source`
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>  * `InstructionsLoaded` — matched against `load_reason`
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>  * `Elicitation` / `ElicitationResult` — matched against `mcp_server_name`
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>  * `FileChanged` — matched against filenames (e.g., `&quot;.envrc|.env&quot;`)
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>  Omit `matcher` to run the hook for all instances of the event.
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>&lt;ResponseField name=&quot;hooks&quot; type=&quot;HookCommand[]&quot; required&gt;
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>  One or more hook definitions to execute when the matcher fires.
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>***
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>## Hook types
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>### `command` — shell command
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>```json  theme={null}
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>{
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>  &quot;type&quot;: &quot;command&quot;,
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>  &quot;command&quot;: &quot;jq &#39;.tool_name&#39; &amp;&amp; my-validator&quot;,
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>  &quot;timeout&quot;: 30,
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>  &quot;shell&quot;: &quot;bash&quot;,
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>  &quot;async&quot;: false,
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>  &quot;once&quot;: false,
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>  &quot;if&quot;: &quot;Bash(git *)&quot;,
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>  &quot;statusMessage&quot;: &quot;Validating command...&quot;
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>}
+</code></pre></div></p>
+<p>The hook input JSON is piped to the command's stdin. The <code>CLAUDE_ENV_FILE</code> environment variable is set for <code>CwdChanged</code> and <code>FileChanged</code> hooks — write <code>export KEY=value</code> lines there to inject environment variables into subsequent Bash tool calls.</p>
+<p><ResponseField name="command" type="string" required>
+  Shell command to execute.
+</ResponseField></p>
+<p><ResponseField name="timeout" type="number">
+  Timeout in seconds. Defaults to the global hook timeout (60 s).
+</ResponseField></p>
+<p><ResponseField name="shell" type="'bash' | 'powershell'">
+  Shell interpreter. <code>bash</code> uses your <code>$SHELL</code> (bash/zsh/sh). Defaults to <code>bash</code>.
+</ResponseField></p>
+<p><ResponseField name="async" type="boolean">
+  When <code>true</code>, the hook runs in the background without blocking Claude. Output is ignored.
+</ResponseField></p>
+<p><ResponseField name="asyncRewake" type="boolean">
+  When <code>true</code>, the hook runs in the background but wakes the model if it exits with code 2. Implies <code>async: true</code>.
+</ResponseField></p>
+<p><ResponseField name="once" type="boolean">
+  When <code>true</code>, the hook runs once and is removed from the configuration after execution.
+</ResponseField></p>
+<p><ResponseField name="if" type="string">
+  Permission rule syntax (e.g., <code>"Bash(git *)"</code>) evaluated against the hook input. The hook is skipped if the condition does not match. Avoids spawning processes for non-matching tool calls.
+</ResponseField></p>
+<p><ResponseField name="statusMessage" type="string">
+  Custom message shown in the spinner while the hook runs.
+</ResponseField></p>
+<h3 id="prompt-llm-evaluation"><code>prompt</code> — LLM evaluation</h3>
+<p>```json  theme={null}
+{
+  "type": "prompt",
+  "prompt": "Check whether this bash command is safe: $ARGUMENTS",
+  "model": "claude-haiku-4-5",
+  "timeout": 30
+}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>The `$ARGUMENTS` placeholder is replaced with the hook input JSON. The model&#39;s response is treated as the hook output.
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>&lt;ResponseField name=&quot;prompt&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Prompt sent to the model. Use `$ARGUMENTS` to embed the hook input.
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>&lt;ResponseField name=&quot;model&quot; type=&quot;string&quot;&gt;
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  Model to use. Defaults to the small fast model.
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>### `agent` — agentic verifier
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>```json  theme={null}
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>{
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  &quot;type&quot;: &quot;agent&quot;,
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  &quot;prompt&quot;: &quot;Verify that unit tests ran and passed.&quot;,
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  &quot;model&quot;: &quot;claude-haiku-4-5&quot;,
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  &quot;timeout&quot;: 120
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>}
+</code></pre></div></p>
+<p>Runs a short agentic loop that can call tools to verify the action. Use for <code>PostToolUse</code> hooks where you want the verifier to read files or run commands.</p>
+<p><ResponseField name="prompt" type="string" required>
+  Verification prompt. Use <code>$ARGUMENTS</code> to embed the hook input.
+</ResponseField></p>
+<h3 id="http-http-endpoint"><code>http</code> — HTTP endpoint</h3>
+<p>```json  theme={null}
+{
+  "type": "http",
+  "url": "https://my-server.example.com/hook",
+  "headers": {
+    "Authorization": "Bearer $MY_TOKEN"
+  },
+  "allowedEnvVars": ["MY_TOKEN"],
+  "timeout": 10
+}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>POSTs the hook input JSON to the given URL. Header values can reference environment variables using `$VAR_NAME` syntax, but only variables listed in `allowedEnvVars` are interpolated.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>&lt;ResponseField name=&quot;url&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  URL to POST the hook input JSON to.
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>&lt;ResponseField name=&quot;headers&quot; type=&quot;Record&lt;string, string&gt;&quot;&gt;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  Additional request headers.
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>&lt;ResponseField name=&quot;allowedEnvVars&quot; type=&quot;string[]&quot;&gt;
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  Environment variable names that may be interpolated in header values.
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>***
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>## Base hook input
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>Every hook receives a JSON object on stdin with these fields present for all event types.
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>&lt;ResponseField name=&quot;hook_event_name&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>  The event that fired (e.g., `&quot;PreToolUse&quot;`).
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>&lt;ResponseField name=&quot;session_id&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>  Current session identifier.
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>&lt;ResponseField name=&quot;transcript_path&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>  Absolute path to the JSONL transcript file for this session.
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>&lt;ResponseField name=&quot;cwd&quot; type=&quot;string&quot; required&gt;
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>  Current working directory at the time the hook fired.
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>&lt;ResponseField name=&quot;permission_mode&quot; type=&quot;string&quot;&gt;
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>  Active permission mode (`&quot;default&quot;`, `&quot;acceptEdits&quot;`, `&quot;bypassPermissions&quot;`, `&quot;plan&quot;`, `&quot;dontAsk&quot;`).
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>&lt;ResponseField name=&quot;agent_id&quot; type=&quot;string&quot;&gt;
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>  Subagent identifier. Present only when the hook fires from within a subagent. Use this field to distinguish subagent calls from main-thread calls.
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>&lt;ResponseField name=&quot;agent_type&quot; type=&quot;string&quot;&gt;
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>  Agent type name (e.g., `&quot;general-purpose&quot;`, `&quot;code-reviewer&quot;`). Present when the hook fires from a subagent, or on the main thread of a session started with `--agent`.
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>&lt;/ResponseField&gt;
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>***
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>## Sync hook output (JSON on stdout)
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>For blocking hooks, write a JSON object to stdout before exiting. The schema is the same for all events, with event-specific fields nested under `hookSpecificOutput`.
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>```json  theme={null}
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>{
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>  &quot;continue&quot;: true,
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>  &quot;suppressOutput&quot;: false,
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>  &quot;decision&quot;: &quot;approve&quot;,
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>  &quot;reason&quot;: &quot;Command looks safe&quot;,
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>  &quot;systemMessage&quot;: &quot;The hook approved this action.&quot;,
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>  &quot;hookSpecificOutput&quot;: {
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>    &quot;hookEventName&quot;: &quot;PreToolUse&quot;,
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>    &quot;permissionDecision&quot;: &quot;allow&quot;,
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>    &quot;additionalContext&quot;: &quot;Verified by security scanner.&quot;
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>  }
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>}
+</code></pre></div></p>
+<p><ResponseField name="continue" type="boolean">
+  When <code>false</code>, Claude stops the current turn immediately.
+</ResponseField></p>
+<p><ResponseField name="suppressOutput" type="boolean">
+  When <code>true</code>, the hook's stdout is not shown in transcript mode.
+</ResponseField></p>
+<p><ResponseField name="decision" type="'approve' | 'block'">
+  Explicit approve/block decision. Takes effect only when the CLI reads it.
+</ResponseField></p>
+<p><ResponseField name="systemMessage" type="string">
+  Message injected into Claude's context as a system turn.
+</ResponseField></p>
+<p><ResponseField name="reason" type="string">
+  Human-readable reason for the decision. Shown to the user when a hook blocks an action.
+</ResponseField></p>
+<p><ResponseField name="hookSpecificOutput" type="object">
+  Event-specific output. See each event section below for the allowed fields.
+</ResponseField></p>
+<hr />
+<h2 id="hook-events">Hook events</h2>
+<h3 id="pretooluse"><code>PreToolUse</code></h3>
+<p>Fires immediately before a tool executes. You can inspect the tool input, approve or block the call, or modify the input before it reaches the tool.</p>
+<p><strong>When it fires:</strong> Before every tool invocation.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="tool_name" type="string">
+  Name of the tool about to run (e.g., <code>"Bash"</code>, <code>"Write"</code>, <code>"mcp__myserver__my_tool"</code>).
+</ResponseField></p>
+<p><ResponseField name="tool_input" type="unknown">
+  The raw tool input object as Claude submitted it.
+</ResponseField></p>
+<p><ResponseField name="tool_use_id" type="string">
+  Unique ID for this tool invocation.
+</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout/stderr not shown. Hook output JSON applied if valid.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Stderr shown to Claude; tool call is <strong>blocked</strong>.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only; tool call continues.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="hookEventName" type="literal: 'PreToolUse'" required>
+  Must be <code>"PreToolUse"</code>.
+</ResponseField></p>
+<p><ResponseField name="permissionDecision" type="'allow' | 'deny' | 'ask'">
+  Override the permission decision for this tool call. <code>"allow"</code> approves the call; <code>"deny"</code> blocks it; <code>"ask"</code> forces the permission dialog.
+</ResponseField></p>
+<p><ResponseField name="permissionDecisionReason" type="string">
+  Reason string shown to the user when the decision is <code>"deny"</code> or <code>"ask"</code>.
+</ResponseField></p>
+<p><ResponseField name="updatedInput" type="Record\<string, unknown>">
+  Replacement tool input. When provided, the tool receives this object instead of Claude's original input.
+</ResponseField></p>
+<p><ResponseField name="additionalContext" type="string">
+  Text injected into Claude's context for this turn.
+</ResponseField></p>
+<hr />
+<h3 id="posttooluse"><code>PostToolUse</code></h3>
+<p>Fires after a tool completes successfully. You can observe the tool output or inject context for Claude to act on.</p>
+<p><strong>When it fires:</strong> After every successful tool execution.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="tool_name" type="string">Tool that ran.</ResponseField>
+<ResponseField name="tool_input" type="unknown">Input that was passed to the tool.</ResponseField>
+<ResponseField name="tool_response" type="unknown">The tool's output.</ResponseField>
+<ResponseField name="tool_use_id" type="string">Unique ID for this invocation.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown in transcript mode (Ctrl+O).</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Stderr shown to Claude immediately as a system message.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="additionalContext" type="string">
+  Context injected into Claude's conversation after the tool result.
+</ResponseField></p>
+<p><ResponseField name="updatedMCPToolOutput" type="unknown">
+  Replacement for the MCP tool's output. Only effective for MCP tool calls.
+</ResponseField></p>
+<hr />
+<h3 id="posttoolusefailure"><code>PostToolUseFailure</code></h3>
+<p>Fires when a tool call ends in an error or is interrupted.</p>
+<p><strong>When it fires:</strong> When a tool throws or is aborted.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="tool_name" type="string">Tool that failed.</ResponseField>
+<ResponseField name="tool_input" type="unknown">Input that was passed to the tool.</ResponseField>
+<ResponseField name="tool_use_id" type="string">Unique ID for this invocation.</ResponseField>
+<ResponseField name="error" type="string">Error message from the tool.</ResponseField>
+<ResponseField name="is_interrupt" type="boolean">Whether the failure was caused by an interrupt signal.</ResponseField></p>
+<p><strong>Exit codes:</strong> Same as <code>PostToolUse</code>. Hook output and exit codes are logged but do not affect the failed tool result.</p>
+<hr />
+<h3 id="permissionrequest"><code>PermissionRequest</code></h3>
+<p>Fires when a permission dialog would be shown to the user. Hooks can programmatically approve or deny without showing any UI.</p>
+<p><strong>When it fires:</strong> When Claude requests permission for a tool call and the default behavior is to prompt.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="tool_name" type="string">Tool requesting permission.</ResponseField>
+<ResponseField name="tool_input" type="unknown">Input the tool would receive if approved.</ResponseField>
+<ResponseField name="permission_suggestions" type="PermissionUpdate[]">Suggested permission rules (allow/deny) that the UI would offer.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Hook decision applied if <code>hookSpecificOutput.decision</code> is set; otherwise falls through to normal dialog.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user; falls through to normal dialog.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="hookEventName" type="literal: 'PermissionRequest'" required>
+  Must be <code>"PermissionRequest"</code>.
+</ResponseField></p>
+<p><ResponseField name="decision" type="object">
+  The approval or denial decision.</p>
+<p><Expandable title="Allow decision">
+    <code>json  theme={null}
+    {
+      "behavior": "allow",
+      "updatedInput": { ... },
+      "updatedPermissions": [...]
+    }</code>
+  </Expandable></p>
+<p><Expandable title="Deny decision">
+    <code>json  theme={null}
+    {
+      "behavior": "deny",
+      "message": "Blocked by security policy.",
+      "interrupt": false
+    }</code></p>
+<div class="highlight"><pre><span></span><code>When `interrupt` is `true`, the current turn is aborted after denial.
+</code></pre></div>
+<p></Expandable>
+</ResponseField></p>
+<hr />
+<h3 id="permissiondenied"><code>PermissionDenied</code></h3>
+<p>Fires when a tool call is denied (by rules, mode, or classifier). You can instruct Claude to retry the action.</p>
+<p><strong>When it fires:</strong> After every permission denial.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="tool_name" type="string">Denied tool.</ResponseField>
+<ResponseField name="tool_input" type="unknown">Input that was denied.</ResponseField>
+<ResponseField name="tool_use_id" type="string">Unique ID for this invocation.</ResponseField>
+<ResponseField name="reason" type="string">Human-readable denial reason.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown in transcript mode.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="retry" type="boolean">
+  When <code>true</code>, Claude is told it may retry the denied action.
+</ResponseField></p>
+<hr />
+<h3 id="stop"><code>Stop</code></h3>
+<p>Fires just before Claude concludes its response for the current turn.</p>
+<p><strong>When it fires:</strong> When the model is about to stop and return control to the user.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="stop_hook_active" type="boolean">
+  Whether a Stop hook is currently running (prevents infinite loops if your Stop hook itself would trigger a Stop).
+</ResponseField></p>
+<p><ResponseField name="last_assistant_message" type="string">
+  Text content of the last assistant message before stopping. Saves you from parsing the transcript file.
+</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout/stderr not shown.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Stderr injected as a system message; Claude <strong>continues</strong> the conversation.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only; Claude stops.</td>
+</tr>
+</tbody>
+</table>
+<p><Tip>
+  Use exit code 2 from a Stop hook to check Claude's output and keep the conversation going if a condition is unmet — for example, if tests are still failing.
+</Tip></p>
+<hr />
+<h3 id="stopfailure"><code>StopFailure</code></h3>
+<p>Fires instead of <code>Stop</code> when the turn ends due to an API error.</p>
+<p><strong>When it fires:</strong> When a rate limit, authentication failure, or other API error ends the turn.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="error" type="'authentication_failed' | 'billing_error' | 'rate_limit' | 'invalid_request' | 'server_error' | 'unknown' | 'max_output_tokens'">
+  The error category.
+</ResponseField></p>
+<p><ResponseField name="error_details" type="string">
+  Detailed error message.
+</ResponseField></p>
+<p><ResponseField name="last_assistant_message" type="string">
+  Last assistant message text, if any was produced before the error.
+</ResponseField></p>
+<p><strong>Behavior:</strong> Fire-and-forget. Hook output and exit codes are ignored.</p>
+<hr />
+<h3 id="subagentstart"><code>SubagentStart</code></h3>
+<p>Fires when Claude spawns a subagent via the <code>Agent</code> tool.</p>
+<p><strong>When it fires:</strong> When an Agent tool call begins.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="agent_id" type="string">Unique ID for this subagent instance.</ResponseField>
+<ResponseField name="agent_type" type="string">Agent type name (e.g., <code>"general-purpose"</code>).</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown to the subagent as context.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="additionalContext" type="string">
+  Context injected into the subagent's conversation at the start.
+</ResponseField></p>
+<hr />
+<h3 id="subagentstop"><code>SubagentStop</code></h3>
+<p>Fires just before a subagent concludes its response. Mirrors <code>Stop</code> but for subagents.</p>
+<p><strong>When it fires:</strong> When a subagent is about to return its result to the parent.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="agent_id" type="string">Subagent instance ID.</ResponseField>
+<ResponseField name="agent_type" type="string">Agent type name.</ResponseField>
+<ResponseField name="agent_transcript_path" type="string">Path to the subagent's JSONL transcript.</ResponseField>
+<ResponseField name="stop_hook_active" type="boolean">Whether a SubagentStop hook is already running.</ResponseField>
+<ResponseField name="last_assistant_message" type="string">Last message from the subagent.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout/stderr not shown.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Stderr shown to subagent; subagent <strong>continues</strong> running.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only; subagent stops.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="sessionstart"><code>SessionStart</code></h3>
+<p>Fires when a session begins. Use this to inject initial context or set up the environment.</p>
+<p><strong>When it fires:</strong> On session startup, resume, clear (<code>/clear</code>), or after compaction.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="source" type="'startup' | 'resume' | 'clear' | 'compact'">
+  What triggered the session start.
+</ResponseField></p>
+<p><ResponseField name="model" type="string">Active model for the session.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown to Claude as initial context.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="additionalContext" type="string">
+  Context injected into Claude's system prompt for this session.
+</ResponseField></p>
+<p><ResponseField name="initialUserMessage" type="string">
+  Auto-submitted as the first user message of the session.
+</ResponseField></p>
+<p><ResponseField name="watchPaths" type="string[]">
+  Absolute file paths to register with the <code>FileChanged</code> watcher.
+</ResponseField></p>
+<hr />
+<h3 id="sessionend"><code>SessionEnd</code></h3>
+<p>Fires when a session is about to end.</p>
+<p><strong>When it fires:</strong> On clear, logout, prompt-input exit, or other termination reasons.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="reason" type="'clear' | 'resume' | 'logout' | 'prompt_input_exit' | 'other' | 'bypass_permissions_disabled'">
+  The reason the session is ending.
+</ResponseField></p>
+<p><strong>Exit codes:</strong> Exit code 0 completes successfully. Other exit codes show stderr to the user.</p>
+<hr />
+<h3 id="setup"><code>Setup</code></h3>
+<p>Fires during repository initialization and maintenance checks.</p>
+<p><strong>When it fires:</strong> On <code>init</code> (first time Claude Code runs in a directory) or <code>maintenance</code> (periodic checks).</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="trigger" type="'init' | 'maintenance'">
+  What triggered the setup hook.
+</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown to Claude.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only. Blocking errors are ignored.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="additionalContext" type="string">
+  Context provided to Claude for the setup phase.
+</ResponseField></p>
+<hr />
+<h3 id="precompact"><code>PreCompact</code></h3>
+<p>Fires before context compaction begins.</p>
+<p><strong>When it fires:</strong> Before the compaction summary is generated, whether triggered manually (<code>/compact</code>) or automatically.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="trigger" type="'manual' | 'auto'">Whether compaction was requested by the user or triggered automatically.</ResponseField>
+<ResponseField name="custom_instructions" type="string | null">Any custom compaction instructions already configured.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout appended as custom compaction instructions.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Compaction is <strong>blocked</strong>.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user; compaction continues.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="postcompact"><code>PostCompact</code></h3>
+<p>Fires after compaction completes.</p>
+<p><strong>When it fires:</strong> After the compaction summary has been generated and applied.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="trigger" type="'manual' | 'auto'">How compaction was triggered.</ResponseField>
+<ResponseField name="compact_summary" type="string">The summary produced by compaction.</ResponseField></p>
+<p><strong>Exit codes:</strong> Exit code 0 shows stdout to the user. Other exit codes show stderr to the user.</p>
+<hr />
+<h3 id="userpromptsubmit"><code>UserPromptSubmit</code></h3>
+<p>Fires when the user submits a prompt, before Claude processes it.</p>
+<p><strong>When it fires:</strong> Each time you press Enter with a message in the terminal.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="prompt" type="string">The raw prompt text the user submitted.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Stdout shown to Claude as additional context.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Processing <strong>blocked</strong>; original prompt erased; stderr shown to user.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="additionalContext" type="string">
+  Context appended to Claude's view of the user message.
+</ResponseField></p>
+<hr />
+<h3 id="notification"><code>Notification</code></h3>
+<p>Fires when Claude Code sends a notification (e.g., permission prompts, idle alerts).</p>
+<p><strong>When it fires:</strong> When a notification event is raised internally.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="message" type="string">Notification message text.</ResponseField>
+<ResponseField name="title" type="string">Notification title.</ResponseField></p>
+<p><ResponseField name="notification_type" type="'permission_prompt' | 'idle_prompt' | 'auth_success' | 'elicitation_dialog' | 'elicitation_complete' | 'elicitation_response'">
+  The type of notification.
+</ResponseField></p>
+<p><strong>Exit codes:</strong> Exit code 0 produces no output. Other exit codes show stderr to the user.</p>
+<hr />
+<h3 id="elicitation"><code>Elicitation</code></h3>
+<p>Fires when an MCP server requests user input. Hooks can auto-respond without showing the dialog.</p>
+<p><strong>When it fires:</strong> When an MCP server sends an elicitation request (a structured input form or URL).</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="mcp_server_name" type="string">Name of the MCP server requesting input.</ResponseField>
+<ResponseField name="message" type="string">The prompt message from the server.</ResponseField>
+<ResponseField name="mode" type="'form' | 'url'">Input mode.</ResponseField>
+<ResponseField name="elicitation_id" type="string">Request identifier.</ResponseField>
+<ResponseField name="requested_schema" type="Record\<string, unknown>">JSON schema describing the expected input structure.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Use hook response if <code>hookSpecificOutput</code> is provided; otherwise show dialog.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Deny the elicitation.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="action" type="'accept' | 'decline' | 'cancel'">
+  The programmatic response to the elicitation.
+</ResponseField></p>
+<p><ResponseField name="content" type="Record\<string, unknown>">
+  Form data to submit when <code>action</code> is <code>"accept"</code>.
+</ResponseField></p>
+<hr />
+<h3 id="elicitationresult"><code>ElicitationResult</code></h3>
+<p>Fires after a user responds to an MCP elicitation. Hooks can observe or override the response.</p>
+<p><strong>When it fires:</strong> After the user (or an Elicitation hook) responds to the elicitation.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="mcp_server_name" type="string">Name of the MCP server.</ResponseField>
+<ResponseField name="elicitation_id" type="string">Request identifier.</ResponseField>
+<ResponseField name="action" type="'accept' | 'decline' | 'cancel'">How the user responded.</ResponseField>
+<ResponseField name="content" type="Record\<string, unknown>">Submitted form data, if accepted.</ResponseField></p>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="action" type="'accept' | 'decline' | 'cancel'">
+  Override the user's action before it is sent to the server.
+</ResponseField></p>
+<p><ResponseField name="content" type="Record\<string, unknown>">
+  Override the submitted content.
+</ResponseField></p>
+<hr />
+<h3 id="configchange"><code>ConfigChange</code></h3>
+<p>Fires when a settings file changes during a session.</p>
+<p><strong>When it fires:</strong> When <code>user_settings</code>, <code>project_settings</code>, <code>local_settings</code>, <code>policy_settings</code>, or <code>skills</code> files are modified on disk.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="source" type="'user_settings' | 'project_settings' | 'local_settings' | 'policy_settings' | 'skills'">
+  Which settings source changed.
+</ResponseField></p>
+<p><ResponseField name="file_path" type="string">Absolute path to the changed file.</ResponseField></p>
+<p><strong>Exit codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Allow the change to be applied.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><strong>Block</strong> the change from being applied to the session.</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Stderr shown to user only.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="instructionsloaded"><code>InstructionsLoaded</code></h3>
+<p>Fires when a CLAUDE.md or instruction rule file is loaded. This event is observability-only.</p>
+<p><strong>When it fires:</strong> When any instruction file is loaded into context.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="file_path" type="string">Path to the loaded file.</ResponseField>
+<ResponseField name="memory_type" type="'User' | 'Project' | 'Local' | 'Managed'">The memory scope of the file.</ResponseField>
+<ResponseField name="load_reason" type="'session_start' | 'nested_traversal' | 'path_glob_match' | 'include' | 'compact'">Why the file was loaded.</ResponseField>
+<ResponseField name="globs" type="string[]">The <code>paths:</code> frontmatter patterns that matched (if <code>load_reason</code> is <code>path_glob_match</code>).</ResponseField>
+<ResponseField name="trigger_file_path" type="string">The file Claude accessed that caused this load (for <code>path_glob_match</code>).</ResponseField>
+<ResponseField name="parent_file_path" type="string">The file that <code>@include</code>d this one (for <code>include</code>).</ResponseField></p>
+<p><strong>Behavior:</strong> Blocking not supported. Exit code 0 completes normally. Other exit codes show stderr to the user.</p>
+<hr />
+<h3 id="worktreecreate"><code>WorktreeCreate</code></h3>
+<p>Fires when Claude Code needs to create an isolated worktree. The hook is responsible for actually creating the worktree and reporting its path.</p>
+<p><strong>When it fires:</strong> When worktree isolation is requested for a task.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="name" type="string">Suggested slug for the worktree directory.</ResponseField></p>
+<p><strong>Behavior:</strong> Write the absolute path of the created worktree directory to stdout and exit with code 0. Any other exit code signals a failure.</p>
+<hr />
+<h3 id="worktreeremove"><code>WorktreeRemove</code></h3>
+<p>Fires when Claude Code needs to remove a previously created worktree.</p>
+<p><strong>When it fires:</strong> When a worktree task completes and the worktree should be cleaned up.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="worktree_path" type="string">Absolute path of the worktree to remove.</ResponseField></p>
+<p><strong>Behavior:</strong> Exit code 0 means success. Other exit codes show stderr to the user.</p>
+<hr />
+<h3 id="cwdchanged"><code>CwdChanged</code></h3>
+<p>Fires after the working directory changes.</p>
+<p><strong>When it fires:</strong> When Claude changes directories during a session.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="old_cwd" type="string">Previous working directory.</ResponseField>
+<ResponseField name="new_cwd" type="string">New working directory.</ResponseField></p>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="watchPaths" type="string[]">
+  Absolute paths to add to the <code>FileChanged</code> watcher. Return this to start watching files in the new directory.
+</ResponseField></p>
+<p>The <code>CLAUDE_ENV_FILE</code> environment variable is set — write <code>export KEY=value</code> lines to apply environment variables to subsequent Bash tool commands.</p>
+<hr />
+<h3 id="filechanged"><code>FileChanged</code></h3>
+<p>Fires when a watched file is modified, added, or removed.</p>
+<p><strong>When it fires:</strong> When a file registered via <code>SessionStart.watchPaths</code> or <code>CwdChanged.watchPaths</code> changes on disk.</p>
+<p><strong>Input fields:</strong></p>
+<p><ResponseField name="file_path" type="string">Absolute path of the changed file.</ResponseField>
+<ResponseField name="event" type="'change' | 'add' | 'unlink'">The type of filesystem event.</ResponseField></p>
+<p><strong><code>hookSpecificOutput</code> fields:</strong></p>
+<p><ResponseField name="watchPaths" type="string[]">
+  Update the watch list with these absolute paths.
+</ResponseField></p>
+<p>The <code>CLAUDE_ENV_FILE</code> environment variable is set for this hook as well.</p>
+<hr />
+<h2 id="async-hooks">Async hooks</h2>
+<p>For hooks that need to run in the background without delaying Claude, output an async acknowledgment on stdout instead of the normal sync output:</p>
+<p><code>json  theme={null}
+{
+  "async": true,
+  "asyncTimeout": 30
+}</code></p>
+<p><ResponseField name="async" type="literal: true" required>
+  Signals that this hook is running asynchronously.
+</ResponseField></p>
+<p><ResponseField name="asyncTimeout" type="number">
+  How long (in seconds) the async hook is allowed to run before it is cancelled.
+</ResponseField></p>
+<p><Warning>
+  Async hooks cannot block tool execution or inject context. Use them for side effects like notifications, logging, or metrics that must not slow down the agentic loop.
+</Warning></p>
+<p>Built with <a href="https://mintlify.com">Mintlify</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/rhino-ty/claude-code-docs-ko" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
