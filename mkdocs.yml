@@ -1,4 +1,8 @@
 site_name: Claude Code 한국어 문서
+docs_dir: .        # 루트를 docs 폴더로 사용
+exclude_docs: |
+  en/
+  .github/
 theme:
   name: material
   language: ko
