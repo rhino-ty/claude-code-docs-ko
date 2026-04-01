@@ -1,0 +1,36 @@
+site_name: Claude Code 한국어 문서
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.highlight
+
+nav:
+  - 홈: README.md
+  - 목차: 00_목차.md
+  - 소개: 01_소개.md
+  - 빠른시작: 02_빠른시작.md
+  - 설치: 03_설치.md
+  - 개념:
+    - 작동원리: 04_작동원리.md
+    - 메모리와 컨텍스트: 05_메모리와컨텍스트.md
+    - 권한 시스템: 06_권한시스템.md
+    - 도구 목록: 07_도구목록.md
+  - 설정:
+    - CLAUDE.md: 08_CLAUDE.md설정.md
+    - 환경변수: 09_환경변수.md
+    - 설정파일: 10_설정파일.md
+  - 가이드:
+    - 인증: 11_인증.md
+    - 훅: 12_훅.md
+    - MCP 서버: 13_MCP서버.md
+    - 멀티에이전트: 14_멀티에이전트.md
+    - 스킬: 15_스킬.md
+  - 레퍼런스:
+    - 커맨드 개요: 16_커맨드개요.md
+    - CLI 플래그: 17_CLI플래그.md
+    - 슬래시 커맨드: 18_슬래시커맨드.md
+    - 훅 레퍼런스: 19_훅레퍼런스.md
+    - SDK 개요: 20_SDK개요.md
